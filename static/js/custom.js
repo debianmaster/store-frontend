@@ -80,29 +80,29 @@ var ViewModel = function() {
 	});
   };
   self.addToCart = function(product, event) {    
-	//$(event.target).closest("div.thumbnail").fadeTo('fast', 0.2).fadeTo('fast', 1.0);
-	var qty=1;	if($(event.target).attr('id')=="btnMoreViewAdd2Cart") qty=$("#moreViewQuantity").val();
-	var	cart_item = new CartItem(product,qty);	
-	$(event.target).closest("div.thumbnail").animate_from_to('#cart tr:last', {
-        pixels_per_second: 2000
-    });
-	$(event.target).animate_from_to('#spnCartImg', {
-        pixels_per_second: 2000
-    });	
-	self.cart.push(cart_item);	
-	event.preventDefault();	
-	return false;
+		//$(event.target).closest("div.thumbnail").fadeTo('fast', 0.2).fadeTo('fast', 1.0);
+		var qty=1;	if($(event.target).attr('id')=="btnMoreViewAdd2Cart") qty=$("#moreViewQuantity").val();
+		var	cart_item = new CartItem(product,qty);	
+		$(event.target).closest("div.thumbnail").animate_from_to('#cart tr:last', {
+					pixels_per_second: 2000
+			});
+		$(event.target).animate_from_to('#spnCartImg', {
+					pixels_per_second: 2000
+		});	
+		self.cart.push(cart_item);	
+		event.preventDefault();	
+		return false;
   };
   self.emptyCart=function(){
 	if(confirm('Are you sure removing items from cart?')) vm.cart([]);
   };
   self.qtyChanged=function(){	
-	$.jStorage.deleteKey('cart');
-	$.jStorage.set("cart", ko.toJSON(vm.cart()));
+		$.jStorage.deleteKey('cart');
+		$.jStorage.set("cart", ko.toJSON(vm.cart()));
   };  
   self.highLight=function(item,event){	
-	$(".pType").removeClass("btn-primary");
-	$(event.target).addClass("btn-primary");
+		$(".pType").removeClass("btn-primary");
+		$(event.target).addClass("btn-primary");
   };
   self.imageClick=function(img,evt){        
         $("#imgMain").attr('src', img);   
@@ -171,6 +171,9 @@ $(document).ready(function(){
 			vm.cart.push(new CartItem(item.product,item.quantity));
 		});		
 	}
+	$("#user").click(function(){
+		 setCookie('user',prompt('Username?',getCookie('user','')));
+	});
 });
 function toggleView(){		
 	$("#"+togglers[0]).show();
@@ -187,3 +190,15 @@ function toggleCheckOut(){
 function isVisible(ele){		
 	return $('#'+ele).is(':visible');
 }
+
+function setCookie(key, value) {
+            var expires = new Date();
+            expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+            document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+}
+
+function getCookie(key) {
+		var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+		return keyValue ? keyValue[2] : null;
+}
+//setCookie('test','1');
