@@ -1,8 +1,9 @@
 var ejs = require("gulp-ejs")
 var gulp = require('gulp') 
+var rename= require('gulp-rename')
 var fs = require('fs');
 gulp.task('build', function() {
- gulp.src("./views/*.ejs")
+ gulp.src("./views/layout.ejs")
     .pipe(ejs({
         title:           'Embedded Market',
         description: 'All your Embedded needs at one place',
@@ -18,5 +19,8 @@ gulp.task('build', function() {
     '*static/js/**/*'
    ])
   .pipe(gulp.dest('./dist'));
- 
+  
+   gulp.src("./dist/layout.ejs")
+   .pipe(rename("index.html"))
+   .pipe(gulp.dest("./dist"))   
 });

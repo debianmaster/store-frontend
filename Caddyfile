@@ -1,0 +1,9 @@
+localhost:8080
+gzip
+ext .html
+proxy /products /products:8080 { 
+ without /products
+}
+proxy /inventory inventory:8080 {
+ without /inventory
+}

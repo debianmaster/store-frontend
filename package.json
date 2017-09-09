@@ -14,7 +14,8 @@
     "mongojs": "^0.7.5"
   },
   "devDependencies": {
-    "gulp-ejs": "^3.0.1"
+    "gulp-ejs": "^3.0.1",
+    "gulp-rename": "^1.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
