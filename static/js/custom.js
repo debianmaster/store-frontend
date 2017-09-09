@@ -1,6 +1,6 @@
 window.vm = null;
 var productsUrl = "/products";
-var inventoryUrl ="inventory";
+var inventoryUrl ="/inventory";
 var togglers=['moreView','homeView'];
 var togglers2=['#productsView','#moreView','#shippingView'];
 /*
