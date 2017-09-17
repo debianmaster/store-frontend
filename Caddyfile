@@ -4,7 +4,9 @@ gzip
 ext .html
 proxy /products products:8080 { 
  without /products
+ transparent
 }
 proxy /inventory inventory:8080 {
  without /inventory
+ transparent
 }
