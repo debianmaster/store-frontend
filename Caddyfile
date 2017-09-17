@@ -1,10 +1,12 @@
-:8080
+:8081
 bind 0.0.0.0
 gzip
 ext .html
 proxy /products products:8080 { 
+ without /products
  transparent
 }
 proxy /inventory inventory:8080 {
+ without /inventory
  transparent
 }
