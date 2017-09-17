@@ -1,7 +1,8 @@
-localhost:8080
+:8080
+bind 0.0.0.0
 gzip
 ext .html
-proxy /products /products:8080 { 
+proxy /products products:8080 { 
  without /products
 }
 proxy /inventory inventory:8080 {
