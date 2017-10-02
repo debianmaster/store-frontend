@@ -2,13 +2,13 @@
 bind 0.0.0.0
 gzip
 ext .html
+#root ./dist
 
 proxy /products products:8080 { 
  without /products
  header_upstream cookie {~cookie}
 }
 
-proxy /inventory inventory:8080 {
+proxy /inventory inventory:8000 {
  without /inventory
- transparent
 }
