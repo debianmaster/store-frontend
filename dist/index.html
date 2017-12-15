@@ -58,8 +58,7 @@
     </div>
   </div>
 </div>
-    <div class="container-fluid">
-
+<div class="container-fluid">
 <div class="row-fluid toggler" isVisible='1' id="homeView">
     <div class="span2" id="menuColumn">
 		<div class="well">
@@ -68,11 +67,14 @@
         </ul>              
 		</div>	
     </div>	    
-    <div class="span6" id="viewColumn">		
+    <div class="span6" id="viewColumn">
+		<div  class="alert alert-danger" id="rt_notification">
+  				Request timeout
+		</div>		
 		<div id="productsView" class="row middleView" style="margin-left:10px">			
 			<ul data-bind="foreach:products" class="thumbnails">
 			  <li class="span2">
-				<div class="thumbnail" rel="popover"  data-bind="attr:{'data-original-title':$data.name}"    data-content="It's so simple to create a tooltop for my website!">
+				<div class="thumbnail" rel="popover"  data-bind="attr:{'data-original-title':$data.name,'class':($data.recommended?'thumbnail alert alert-success':'thumbnail')}"    data-content="It's so simple to create a tooltop for my website!">
 				  <img alt="" data-bind="attr:{src:$data.img}">
 				  <div class="caption">              
 					<h5 data-bind="text:$data.name"></h5>		        

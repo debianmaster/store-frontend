@@ -150,16 +150,24 @@ $(document).ready(function(){
 	});
 	vm.currProduct.subscribe(function(nVal){
 		ko.applyBindings(vm,$("#moreView")[0]);
+		
 	});		
 	$('.nav-header').css("cursor","pointer");	
-	$.getJSON(productsUrl+"/cats",function(data){				
+	$('#rt_notification').hide();
+	$.getJSON(productsUrl+"/cats",function(data,status,resp){		
+		console.log(err,"->",data,"->",data2);
+		if(resp.)		
 		vm.Cats(data);		
         setTimeout(function(){
-            $('.nav-header').click(function (event) {    	                                        	
-                $(this).next().toggle(300);				
-    	    });
-			$('.nav-header:not(:eq(0))').click().click();						
+					$('.nav-header').click(function (event) {    	                                        	
+							$(this).next().toggle(300);				
+					});
+					$('.nav-header:not(:eq(0))').click().click();						
         },500);		
+	},function(data,txtStatus,jqXHR){
+		console.log(data,"->",txtStatus,"->",jqXHR);
+		if(txtStatus!=200)
+		$('#rt_notification').show();
 	});		
 	$.getJSON(inventoryUrl+"/inventory",function(data){	
 		console.log(data);			
