@@ -43,7 +43,6 @@ var ViewModel = function() {
   self.currSubCat	  = ko.observable(1);
 	self.inventory	  = ko.observableArray([]);
   self.shippingWithPassword = ko.observable(false);
-	self.fetchError = ko.observable(false);
   /**
    * Computed Observables
    */
@@ -150,22 +149,25 @@ $(document).ready(function(){
 		$.jStorage.set("cart", ko.toJSON(vm.cart()));
 	});
 	vm.currProduct.subscribe(function(nVal){
-			ko.applyBindings(vm,$("#moreView")[0]);
-			$('.notification').hide();	
+		ko.applyBindings(vm,$("#moreView")[0]);
+		
 	});		
 	$('.nav-header').css("cursor","pointer");	
 	$('#rt_notification').hide();
-	$.getJSON(productsUrl+"/cats",function(data){				
+	$.getJSON(productsUrl+"/cats",function(data,status,resp){		
+		console.log(err,"->",data,"->",data2);
+		//if(resp)		
 		vm.Cats(data);		
         setTimeout(function(){
-            $('.nav-header').click(function (event) {    	                                        	
-                $(this).next().toggle(300);				
-    	    });
+					$('.nav-header').click(function (event) {    	                                        	
+							$(this).next().toggle(300);				
+					});
 					$('.nav-header:not(:eq(0))').click().click();						
         },500);		
-	}).fail(function(){
+	},function(data,txtStatus,jqXHR){
+		console.log(data,"->",txtStatus,"->",jqXHR);
+		if(txtStatus!=200)
 		$('#rt_notification').show();
-		
 	});		
 	$.getJSON(inventoryUrl+"/inventory",function(data){	
 		console.log(data);			
