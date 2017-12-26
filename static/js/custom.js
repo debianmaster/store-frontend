@@ -155,7 +155,7 @@ $(document).ready(function(){
 	$('.nav-header').css("cursor","pointer");	
 	$('#rt_notification').hide();
 	$.getJSON(productsUrl+"/cats",function(data,status,resp){		
-		console.log(err,"->",data,"->",data2);
+		//console.log(err,"->",data,"->",data2);
 		//if(resp)		
 		vm.Cats(data);		
         setTimeout(function(){
